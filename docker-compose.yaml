@@ -1,0 +1,24 @@
+version: '3.9'
+
+services:
+  geode_postgis:
+    image: postgis/postgis:15-master
+    container_name: geode_postgis
+    ports:
+      - "5532:5432"
+    env_file:
+      - .env
+    volumes:
+      - geode_pg_data:/var/lib/postgresql/data
+    networks:
+      - geode_network
+
+networks:
+  geode_network:
+    external: true
+  ecore_backend:
+    external: true
+    
+
+volumes:
+  geode_pg_data:
